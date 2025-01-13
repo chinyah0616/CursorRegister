@@ -1,6 +1,8 @@
 name: OneAPI Cursor Cleaner
 
 on:
+  schedule:
+    - cron: "*/30 * * * *" # Runs every 30 minutes
   workflow_dispatch:
     inputs:
       disable_accounts:
