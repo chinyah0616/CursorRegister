@@ -9,7 +9,8 @@ class Cursor:
 
         headers = {
             "Content-Type": "application/json",
-            "Cookie": f"WorkosCursorSessionToken={token}"
+            "Cookie": f"WorkosCursorSessionToken={token}",
+            "ngrok-skip-browser-warning": "ignore"
         }
         response = requests.get(url, headers=headers)
         usage = response.json().get("gpt-4", None)
@@ -23,7 +24,8 @@ class Cursor:
 
         headers = {
             "Content-Type": "application/json",
-            "Cookie": f"WorkosCursorSessionToken={token}"
+            "Cookie": f"WorkosCursorSessionToken={token}",
+            "ngrok-skip-browser-warning": "ignore"
         }
         response = requests.get(url, headers=headers)
         remaining_days = response.json().get("daysRemainingOnTrial", None)
