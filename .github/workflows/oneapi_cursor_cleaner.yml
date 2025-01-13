@@ -1,8 +1,6 @@
 name: OneAPI Cursor Cleaner
 
 on:
-  schedule:
-    - cron: "*/30 * * * *" # Runs every 30 minutes
   workflow_dispatch:
     inputs:
       disable_accounts:
@@ -12,7 +10,7 @@ on:
       delete_accounts:
         description: 'Delete Low Balance Accounts'
         type: boolean
-        default: true
+        default: false
 
 jobs:
   build:
