@@ -11,7 +11,7 @@ from datetime import datetime
 
 from faker import Faker
 from DrissionPage import ChromiumOptions, Chromium
-from temp_mails import Tempmail_io, Guerillamail_com
+from temp_mails import Dropmail_me , Inboxes_com
 
 CURSOR_URL = "https://www.cursor.com/"
 CURSOR_LOGIN_URL = "https://authenticator.cursor.sh"
@@ -61,8 +61,9 @@ def sign_up(options):
     thread_id = threading.current_thread().ident
     
     # Get temp email address
-    #mail = Tempmail_io()
-    mail = Guerillamail_com()
+    # type(mailnot).__name__ in [Tempmail_io, Guerillamail_com]
+    mail = Dropmail_me()
+    #mail = Guerillamail_com()
     email = mail.email
 
     # Get password and name by faker
@@ -159,7 +160,8 @@ def sign_up(options):
             verify_code = re.search(r'open browser window\.(\d{6})This code expires', message_text).group(1)
         elif "preview" in data:
             message_text = data["preview"]
-            verify_code = re.search(r'Your verification code is (\d{6})\. This code expires', message_text).group(1)
+            message_text = message_text.strip().replace('\n', '').replace('\r', '').replace(' ', '')
+            verify_code = re.search(r'(\d{6})Thiscodeexpires', message_text).group(1)
         # Handle HTML format
         elif "content" in data:
             message_text = data["content"]
