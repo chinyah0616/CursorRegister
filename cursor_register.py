@@ -3,7 +3,6 @@ import re
 import csv
 import copy
 import queue
-import random
 import argparse
 import threading
 import concurrent.futures
@@ -66,9 +65,11 @@ def sign_up(options):
 
     mail = Gmailpm(browser=browser)
     email = mail.get_email_address(fake.password(length=12, special_chars=False, digits=True, upper_case=False, lower_case=True))
+    if email is None:
+        print("[Regitser] Fail to get email address from temp emaill")
+        return None
 
     # Get password and name by faker
-    
     password = fake.password(length=12, special_chars=True, digits=True, upper_case=True, lower_case=True)
     first_name, last_name = fake.name().split(' ')[0:2]
 
