@@ -28,7 +28,7 @@ class Gmailpm:
                 break
 
         if email_address is None:
-            print("[Gmail.pm] Fail to get email address from gmail.pm.")
+            print("[gmail.pm] Fail to get email address from gmail.pm.")
             return None
         
         return email_address
