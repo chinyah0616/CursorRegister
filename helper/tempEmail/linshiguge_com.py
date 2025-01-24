@@ -34,19 +34,21 @@ class Linshigugecom:
         for retry in range(self.retry_times):            
             try:
                 # If the email already has the message, get a new one
+                self.tab.wait(1.5, 3.5)
                 self.tab.ele("xpath=//a[@id='newMailbox']").click()
-                self.tab.wait(5)
 
-                #if self.tab.wait.eles_loaded("xpath=//div[@class='base-layout-root']", timeout=5):
-                #    self.tab.ele("xpath=//a[@id='newMailbox']").click()
+                if self.tab.wait.eles_loaded("xpath=//div[@class='base-layout-root']", timeout=3):
+                    continue
 
                 # Wait until the new email generated
                 for retry in range(self.retry_times):
-                    self.tab.wait(2.5, 4.5)
                     self.email_address = self.tab.ele("xpath=//input[@id='active-mail']").value
-                    if "@" in self.email_addres:
+                    if "@" in self.email_address:
                         return self.email_address 
-            except:
+                    self.tab.wait(2.5, 4.5)
+
+            except Exception as e:
+                print(e)
                 pass
                
             if retry == self.retry_times -1:
