@@ -123,6 +123,7 @@ def sign_up(options):
     for retry in range(retry_times):
         try:
             if enable_register_log: print(f"[Register][{thread_id}][{retry}] Input password")
+            tab.refresh()
             tab.ele("xpath=//input[@name='password']").input(password, clear=True)
             tab.ele('@type=submit').click()
             tab.wait.load_start()
@@ -171,7 +172,7 @@ def sign_up(options):
     for retry in range(retry_times):
         try:
             if enable_register_log: print(f"[Register][{thread_id}][{retry}] Input email verification code")
-
+            tab.refresh()
             for idx, digit in enumerate(verify_code, start = 0):
                 tab.ele(f"xpath=//input[@data-index={idx}]").input(digit, clear=True)
                 tab.wait(0.1, 0.3)
