@@ -34,6 +34,7 @@ class Linshigugecom:
         for retry in range(self.retry_times):            
             try:
                 # If the email already has the message, get a new one
+                self.tab.refresh()
                 self.tab.wait(1.5, 3.5)
                 self.tab.ele("xpath=//a[@id='newMailbox']").click()
 
@@ -71,11 +72,9 @@ class Linshigugecom:
                 self.tab.refresh()
                 messages = self.tab.ele("xpath=//tbody[@id='message-list']")
                 message_trs = messages.children()
-                print(f"[Debug] Email Meesage: {messages.text}")
                 if len(message_trs) > 1:
                     a = self.tab.ele("xpath=//a[contains(string(.), 'Cursor')]")                    
                     self.tab.get(a.attr("href"))
-                                        
                     while time.time() - start_time <= timeout:
                         text = self.tab.ele("xpath=//div[@class='base-layout-root']").text
                         if "正在加载" in text:
