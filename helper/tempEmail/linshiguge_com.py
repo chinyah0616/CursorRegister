@@ -73,11 +73,9 @@ class Linshigugecom:
                 message_trs = messages.children()
                 print(f"[Debug] Email Meesage: {messages.text}")
                 if len(message_trs) > 1:
-                    a = self.tab.ele("xpath=//a[contains(string(.), 'Cursor')]")
-                    a.click()
-                    
-                    self.tab.wait(1.5, 3.5)
-                    
+                    a = self.tab.ele("xpath=//a[contains(string(.), 'Cursor')]")                    
+                    self.tab.get(a.attr("href"))
+                                        
                     while time.time() - start_time <= timeout:
                         text = self.tab.ele("xpath=//div[@class='base-layout-root']").text
                         if "正在加载" in text:
