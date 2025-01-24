@@ -34,9 +34,10 @@ class Linshigugecom:
         for retry in range(self.retry_times):            
             try:
                 # If the email already has the message, get a new one
-                self.tab.refresh()
-                self.tab.wait(1.5, 3.5)
-                self.tab.ele("xpath=//a[@id='newMailbox']").click()
+                for _ in range(self.retry_times):
+                    self.tab.refresh()
+                    self.tab.ele("xpath=//a[@id='newMailbox']").click()
+                    self.tab.wait(1.5, 3.5)
 
                 # Wait until the new email generated
                 for retry in range(self.retry_times):
