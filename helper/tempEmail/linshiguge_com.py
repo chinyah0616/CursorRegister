@@ -72,25 +72,24 @@ class Linshigugecom:
                 messages = self.tab.ele("xpath=//tbody[@id='message-list']")
                 message_trs = messages.children()
                 print(f"[Debug] Email Meesage: {messages.text}")
-                if len(message_trs) > 0:
-                    message_curor = [message_tr.children()[0] for message_tr in message_trs if message_tr.children()[0].text.lower() == "cursor"]
-                    if len(message_curor) > 0:
-                        message_curor = message_curor[0]
-                        message_curor.child().click()
-                        self.tab.wait(1.5, 3.5)
-
-                        #while time.time() - start_time <= timeout:
+                if len(message_trs) > 1:
+                    a = self.tab.ele("xpath=//a[contains(string(.), 'Cursor')]")
+                    a.click()
+                    
+                    self.tab.wait(1.5, 3.5)
+                    
+                    while time.time() - start_time <= timeout:
                         text = self.tab.ele("xpath=//div[@class='base-layout-root']").text
-                        print(f"[Debug] Email info: {text}")
-                            #if "正在加载" in text:
-                            #    self.tab.wait(delay)
-                            #    continue
-
+                        if "正在加载" in text:
+                            self.tab.wait(delay)
+                            continue
+                        
                         return {
                             "text": text
                         }
 
             except Exception as e:
+                print(e)
                 pass
 
         return None
