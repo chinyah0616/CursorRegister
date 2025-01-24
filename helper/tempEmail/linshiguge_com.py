@@ -38,9 +38,6 @@ class Linshigugecom:
                 self.tab.wait(1.5, 3.5)
                 self.tab.ele("xpath=//a[@id='newMailbox']").click()
 
-                if self.tab.wait.eles_loaded("xpath=//div[@class='base-layout-root']", timeout=5):
-                    continue
-
                 # Wait until the new email generated
                 for retry in range(self.retry_times):
                     self.email_address = self.tab.ele("xpath=//input[@id='active-mail']").value
