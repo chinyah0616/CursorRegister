@@ -34,7 +34,7 @@ class Linshigugecom:
         for retry in range(self.retry_times):            
             try:
                 # If the email already has the message, get a new one
-                if self.tab.wait.eles_loaded("xpath=//div[@class='base-layout-root']"):
+                if self.tab.wait.eles_loaded("xpath=//div[@class='base-layout-root']", timeout=5):
                     self.tab.ele("xpath=//a[@id='newMailbox']").click()
 
                 # Wait until the new email generated
@@ -56,14 +56,15 @@ class Linshigugecom:
         return self.email_address
         
     def wait_for_message(self, delay=5, timeout=300):
+        delay = max(delay, 5)
 
         start_time = time.time()
-
         while time.time() - start_time <= timeout:
 
             try:
-                self.tab.refresh()
+                self.tab.wait(delay)
 
+                self.tab.refresh()
                 messages = self.tab.ele("xpath=//tbody[@id='message-list']")
                 message_trs = messages.children()
                 if len(message_trs) > 0:
@@ -78,8 +79,6 @@ class Linshigugecom:
                     return {
                         "text": content.text
                     }
-
-                self.tab.wait(delay)
 
             except Exception as e:
                 pass
@@ -99,10 +98,3 @@ if __name__ == "__main__":
     print(address)
     a.wait_for_message()
     
-
-
-
-
-
-
-
