@@ -76,6 +76,7 @@ class Linshigugecom:
                     while time.time() - start_time <= timeout:
                         text = self.tab.ele("xpath=//div[@class='base-layout-root']").text
                         if "正在加载" in text:
+                            self.tab.refresh()
                             self.tab.wait(delay)
                             continue
                         
