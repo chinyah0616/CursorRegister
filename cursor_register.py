@@ -12,7 +12,7 @@ from datetime import datetime
 from faker import Faker
 from DrissionPage import ChromiumOptions, Chromium
 
-from helper.tempEmail.gmail_pm import Gmailpm
+from helper.tempEmail.linshiguge_com import Linshigugecom
 
 CURSOR_URL = "https://www.cursor.com/"
 CURSOR_LOGIN_URL = "https://authenticator.cursor.sh"
@@ -46,7 +46,7 @@ def sign_up(options):
 
     def wait_for_new_email_thread(mail, queue, timeout=300):
         try:
-            data = mail.wait_for_message(delay=1, timeout=timeout)
+            data = mail.wait_for_message(delay=3, timeout=timeout)
             queue.put(copy.deepcopy(data))
         except Exception as e:
             queue.put(None)
@@ -63,10 +63,10 @@ def sign_up(options):
     
     fake = Faker()
 
-    mail = Gmailpm(browser=browser)
-    email = mail.get_email_address(fake.password(length=12, special_chars=False, digits=True, upper_case=False, lower_case=True))
+    mail = Linshigugecom(browser=browser)
+    email = mail.get_email_address()
     if email is None:
-        print("[Regitser] Fail to get email address from temp emaill")
+        print("[Register] Fail to get email address from temp email server")
         return None
 
     # Get password and name by faker
