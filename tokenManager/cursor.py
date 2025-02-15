@@ -6,7 +6,7 @@ class Cursor:
         "claude-3-5-sonnet-200k",
         "claude-3.5-sonnet",
         "claude-3-opus",
-        "claude-3-haiku-200k"
+        "claude-3-haiku-200k",
         'claude-3.5-haiku', 
         "cursor-fast",
         "cursor-small",
