@@ -55,7 +55,7 @@ class OneAPIManager:
                 "gcp_account": "",
                 "rate_limit_count":rate_limit_count,
                 "gemini_model":"",
-                "tags": tags,
+                "tags": "Cursor",
                 "rate_limited":rate_limit_count > 0,
                 "is_tools": False,
                 "claude_original_request": False,
