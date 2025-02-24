@@ -2,7 +2,7 @@ import requests
 
 class Cursor:
 
-models = [
+    models = [
         "claude-3-5-sonnet-20241022",
         "claude-3-opus",
         "deepseek-r1",
@@ -12,7 +12,7 @@ models = [
         'gpt-4o',
         'o1', 
         "o3-mini"
-    ]
+    ]    
     
     @classmethod
     def get_remaining_balance(cls, token):
