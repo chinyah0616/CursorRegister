@@ -9,6 +9,9 @@ class Cursor:
         "deepseek-v3",
         'gemini-2.0-flash-thinking-exp', 
         'gemini-2.0-pro-exp', 
+        'gpt-4o',
+        'o1', 
+        "o3-mini"
     ]    
     
     @classmethod
