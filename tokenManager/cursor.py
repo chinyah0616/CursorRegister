@@ -5,6 +5,7 @@ class Cursor:
     models = [
         "claude-3-5-sonnet-20241022",
         "claude-3-opus",
+        "claude-3.7-sonnet",
         "deepseek-r1",
         "deepseek-v3",
         'gemini-2.0-flash-thinking-exp', 
